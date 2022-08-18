@@ -1,3 +1,7 @@
+body {
+  background-color: #f8f9fa;
+}
+
 .jumbotron,
 .card-body,
 .container,
@@ -176,7 +180,7 @@ footer p {
 }
 
 main {
-  min-height: calc(100vh - 210px);
+  min-height: calc(100vh - 180px);
 }
 
 a.custom-card,
@@ -187,4 +191,7 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+.login-cnt{
+  height: 45vh;
 }

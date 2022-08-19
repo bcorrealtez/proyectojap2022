@@ -21,7 +21,7 @@ function showProductsList(){
         let product = currentProductsArray.products[i];
 
             htmlContentToAppend += `
-            <div onclick="setProdID(${product.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProdID(${product.id})" class="list-group-item list-group-item-action cursor-active mb-2 shadow">
                 <div class="row">
                     <div class="col-3">
                         <img src="${product.image}" alt="${product.name}" class="img-thumbnail">
@@ -31,6 +31,7 @@ function showProductsList(){
                             <h4 class="mb-1">${product.name} - ${product.currency} ${product.cost}</h4>
                             <small class="text-muted">${product.soldCount} vendidos</small>
                         </div>
+                        <hr>
                         <p class="mb-1">${product.description}</p>
                     </div>
                 </div>
@@ -45,7 +46,7 @@ function showProductsList(){
 
 
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(PUBLISH_PRODUCT_URL).then(function(resultObj){
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductsArray = resultObj.data
             console.log(currentProductsArray)

@@ -14,16 +14,17 @@
 <body>
   <main>
     <div class="container login-cnt">
-      <form>
-        <div class="row ">
-          <div class="col-12 text-center">
-            <img src="img/login.png" alt="login" class="w-50">
-          </div>
-          <div class="col-4 p-0 pt-4 overflow-hidden login-cnt">
-            <img src="img/cat103_1.jpg" class="h-100">
-          </div>
-          <div class="col-4 p-5">
-            
+      <div class="row ">
+        <div class="col-12 text-center">
+          <img src="img/login.png" alt="login" class="w-50">
+        </div>
+
+        <div class="col-4 p-0 pt-4 overflow-hidden login-cnt">
+          <img src="img/cat103_1.jpg" class="h-100">
+        </div>
+
+        <div class="col-4 p-5">
+          <form>
             <h1 class="text-center mb-4">Inicio de sesión</h1>
             <div class="row g-3">
               <div class="p-2 col-12">
@@ -38,12 +39,13 @@
                 <button class="btn btn-primary w-75" type="submit" id="ingBtn">Ingresar</button>
               </div>
             </div>
-          </div>
-          <div class="col-4 p-0 pt-4 overflow-hidden">
-            <img src="img/cat102_1.jpg" class="h-100">
-          </div>
+          </form>
         </div>
-      </form>
+
+        <div class="col-4 p-0 pt-4 overflow-hidden">
+          <img src="img/cat102_1.jpg" class="h-100">
+        </div>
+      </div>
     </div>
   </main>
   <footer class="text-muted">
@@ -58,11 +60,14 @@
   </footer>
 
   <div class="alert alert-danger alert-dismissible fade" role="alert" id="alert-danger">
-    <p>Los datos ingresados no cumplen con los requisitos solicitados</p>
+    <p>Los datos ingresados no cumplen con los requisitos solicitados
+      <ul>
+        <li>No deben existir campos vacíos</li>
+        <li>La contraseña debe tener un largo mayor o igual a 8</li>
+      </ul>
+    </p>
     <button type="button" class="btn-close" aria-label="Close"></button>
   </div>
-
-  
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/login.js"></script>
 </body>

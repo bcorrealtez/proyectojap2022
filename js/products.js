@@ -1,7 +1,6 @@
 const catID=localStorage.getItem('catID')
 
 let currentProductsArray = [];
-console.log(catID)
 
 
 function setProdID(id) {
@@ -37,7 +36,6 @@ function showProductsList(){
                 </div>
             </div>
             `
-        
 
         document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
     }
@@ -49,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductsArray = resultObj.data
-            console.log(currentProductsArray)
             showProductsList()
         }
     });

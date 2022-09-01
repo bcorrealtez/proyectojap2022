@@ -76,8 +76,9 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 
     if(categoriesArray != undefined){
         currentCategoriesArray = categoriesArray;
+        
     }
-
+console.log(sortCriteria)
     currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
 
     //Muestro las categorías ordenadas

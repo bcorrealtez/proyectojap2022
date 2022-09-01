@@ -1,1 +1,0 @@
-prodID=localStorage.getItem('prodID');

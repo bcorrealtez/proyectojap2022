@@ -1,4 +1,4 @@
-const user=localStorage.getItem('inpVal')
+const user=localStorage.getItem('userMailVal')
 
 const nav=document.querySelector('nav');
 nav.innerHTML=`

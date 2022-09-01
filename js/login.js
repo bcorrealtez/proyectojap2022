@@ -1,8 +1,7 @@
 const dAlerta=document.getElementById("alert-danger");
 
-
-function setInpValue(valor) {
-    localStorage.setItem("inpVal", valor);
+function setMailValue(valor) {
+    localStorage.setItem("userMailVal", valor);
 }
 
 function showAlertError() {
@@ -20,7 +19,7 @@ btn.addEventListener('click', (e)=>{
     if (mail=='' || pass=='' || pass.length<8) {
         showAlertError();
     } else {
-        setInpValue(mail);
+        setMailValue(mail);
         form.submit();
         window.location.replace("home.html");
     }

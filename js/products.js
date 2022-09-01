@@ -1,7 +1,8 @@
 const ORDER_ASC_BY_PRICE = "ASC";
 const ORDER_DESC_BY_PRICE = "DESC";
 const ORDER_BY_PROD_SOLD = "Venta";
-let currentProductsArray = [];
+let currentCategoryArray = [];
+let productsArray= [];
 let product = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
@@ -45,14 +46,14 @@ function setProdID(id) {
 
 function showProductsList(){
     document.getElementById("list-header").innerHTML = `
-    <h1>${currentProductsArray.catName}</h1>
+    <h1>${currentCategoryArray.catName}</h1>
     <hr>
-    <p class="text-muted m-0">Listado de productos de la categoría "${currentProductsArray.catName}"</p>
+    <p class="text-muted m-0">Listado de productos de la categoría "${currentCategoryArray.catName}"</p>
     `;
     
     let htmlContentToAppend = "";
-    for(let i = 0; i < products.length; i++){
-        let product = products[i];
+    for(let i = 0; i < productsArray.length; i++){
+        let product = productsArray[i];
 
         if (((minCount == undefined) || (minCount != undefined && parseInt(product.cost) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(product.cost) <= maxCount))){
@@ -75,14 +76,13 @@ function showProductsList(){
             </div>
             `
         }
-
         document.getElementById("prod-list-container").innerHTML = htmlContentToAppend;
     }
 }
 
 function sortAndShowProducts(sortCriteria){
     currentSortCriteria = sortCriteria;
-    products = sortProducts(currentSortCriteria, products);
+    productsArray = sortProducts(currentSortCriteria, productsArray);
     //Muestro los productos ordenados
     showProductsList();
 }
@@ -92,8 +92,8 @@ function sortAndShowProducts(sortCriteria){
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCTS_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
-            currentProductsArray = resultObj.data;
-            products = currentProductsArray.products;
+            currentCategoryArray = resultObj.data;
+            productsArray = currentCategoryArray.products;
             showProductsList()
         }
     });
@@ -121,8 +121,8 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
-        //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
-        //de ventas por producto.
+        //Obtengo el mínimo y máximo de los intervalos para filtrar por precio
+        //de producto.
         minCount = document.getElementById("rangeFilterCountMin").value;
         maxCount = document.getElementById("rangeFilterCountMax").value;
 

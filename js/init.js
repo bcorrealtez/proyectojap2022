@@ -41,3 +41,7 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  if (!localStorage.getItem('userMailVal')) {window.location.replace("index.html");}
+});

@@ -2,6 +2,7 @@ const dAlerta=document.getElementById("alert-danger");
 
 function setMailValue(valor) {
     localStorage.setItem("userMailVal", valor);
+    window.location.replace("home.html");
 }
 
 function showAlertError() {
@@ -20,8 +21,6 @@ btn.addEventListener('click', (e)=>{
         showAlertError();
     } else {
         setMailValue(mail);
-        form.submit();
-        window.location.replace("home.html");
     }
 
 });
@@ -30,4 +29,6 @@ const dClose=dAlerta.querySelector('.btn-close');
 
 dClose.addEventListener('click', ()=>{
     dAlerta.classList.remove("show");
+    form.querySelector('#email').value='';
+    form.querySelector('#pass').value='';
 });

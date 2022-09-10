@@ -195,3 +195,21 @@ a.custom-card:hover {
 .login-cnt{
   height: 45vh;
 }
+
+
+h4 {
+  font-weight: bold;
+}
+
+
+h5 {
+  font-weight: bold;
+}
+
+input[name="staRate"]{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}

@@ -189,6 +189,10 @@ a.custom-card:hover {
   text-decoration: inherit;
 }
 
+.fa-star {
+  color: gainsboro;
+}
+
 .checked {
   color: orange;
 }
@@ -212,4 +216,8 @@ input[name="staRate"]{
   cursor: pointer;
   height: 0;
   width: 0;
+}
+
+.infoCmt{
+  font-size: 0.8rem;
 }

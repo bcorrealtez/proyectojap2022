@@ -106,12 +106,60 @@ function rate(id) {
         i<id ? star[i].classList.add("checked") : star[i].classList.remove("checked");
     }
 }
+
+function rateScore(score) {
+    rateCmnts='';
+    for (let a = 0; a < 5; a++) {
+        a<score ? rateCmnts+="<i class='fa fa-star checked'></i>" : rateCmnts+="<i class='fa fa-star'></i>";
+    }
+    return rateCmnts;
+}
+
+function showProductComments(){
+    let commentToAppend='';
+    for (let i = 0; i < currentComment.length; i++) {
+        commentToAppend+=`
+        <div class="row justify-content-center ">
+            <div class="row px-3 pt-3 text-muted border-top border-light">
+                <div class="col p-0">
+                    <span>${currentComment[i].user}</span>  
+                </div>
+                <div class="col text-end infoCmt">
+                    <div class="row">
+                        <span class="p-0">${currentComment[i].dateTime}</span>
+                    </div>
+                    <div class="row small p-0">
+                        <label class="p-0 pb-1 cmntStars" id="i"> 
+                            ${rateScore(currentComment[i].score)}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-break px-3 pb-3 pt-0">
+                <span class="p-0">${currentComment[i].description}</span> 
+            </div>
+        </div>
+        `
+        
+        
+        
+    }
+    document.getElementById('cmntSection').innerHTML=commentToAppend;
+}
+
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProduct = resultObj.data;
             prodImg = currentProduct.images;
-            showProductInfo()
+            showProductInfo();
+        }
+    });
+
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok"){
+            currentComment = resultObj.data;
+            showProductComments();
         }
     });
 });

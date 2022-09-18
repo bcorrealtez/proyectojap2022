@@ -1,3 +1,4 @@
+//------------ Indicadores de carousel con imágenes pequeñas del producto ------------
 function showSlIndicators() {
     let slideInd='';
     for (let i = 0; i < prodImg.length; i++) {
@@ -9,6 +10,8 @@ function showSlIndicators() {
     }
     return slideInd;
 }
+
+//------------ Función que crea los ítems del carousel ------------
 function showImages(){
     let imgList='';
     
@@ -21,6 +24,8 @@ function showImages(){
     }
     return imgList;
 }
+
+//------------ Función que crea el html para mostrar la información del producto ------------
 function showProductInfo(){
     document.querySelector("#product-header h1").innerHTML += currentProduct.name;
 
@@ -29,9 +34,11 @@ function showProductInfo(){
         <div class="row justify-content-center ps-3 pe-3">
             <div class="col-md-7 mb-3 shadow-lg p-3 rounded-3">    
                 <div id="productCarousel" class="carousel carousel-fade" data-bs-ride="carousel">
-                    
                     <div class="carousel-inner img-thumbnail">
-                        ${showImages()}
+                        ${
+                            showImages()
+                            // Se cargan las imágenes del carousel
+                        }
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -43,33 +50,30 @@ function showProductInfo(){
                     </button>
                 </div>
                 <div class="row p-3">           
-                    ${showSlIndicators()}    
+                    ${
+                        showSlIndicators()
+                        // Se cargan las imágenes pequeñas que actúan como indicadores del carousel
+                    }    
                 </div>
             </div>
             <div class="col-md-5 ps-md-4 mb-3">
                 <div class="row h-100 shadow rounded-3 justify-content-center bg-white p-4">
                     <div class="row h-100 rounded-3 justify-content-center bg-light p-3">
                         <div class="row align-content-center p-3 overflow-hidden">
-                            <div class="col text-start">
+                            <div class="col d-flex justify-content-between">
                                 <h5>Precio</h5>
-                            </div>
-                            <div class="col text-start">
                                 <p>${currentProduct.currency} ${currentProduct.cost}</p>
                             </div>
                         </div>   
                         <div class="row align-content-center p-3 overflow-hidden">
-                            <div class="col text-start">
+                            <div class="col d-flex justify-content-between">
                                 <h5>Categoría</h5>
-                            </div>
-                            <div class="col text-start">
                                 <p>${currentProduct.category}</p>
                             </div>
                         </div>
                         <div class="row align-content-center p-3 overflow-hidden">
-                            <div class="col text-start">    
+                            <div class="col d-flex justify-content-between">    
                                 <h5>Cantidad de vendidos</h5>
-                            </div>
-                            <div class="col text-start">
                                 <p>${currentProduct.soldCount}</p>
                             </div>
                         </div>
@@ -89,6 +93,8 @@ function showProductInfo(){
         </div>
     </div>
     `;
+
+    // Se seleccionan primer item y primer indicador del carousel para asignarles la clase active para que funcione correctamente
     let fstItem=document.querySelector('.carousel-item');
     let fstInd=document.querySelector('button[aria-label="Slide 1"]')
     fstItem.classList.add("active")
@@ -96,6 +102,7 @@ function showProductInfo(){
     document.querySelector('#primerIndicador').classList.add("active")
 }
 
+//------------ Función que marca el puntaje de estrellas al hacer un comentario ------------
 let calif = document.querySelector('#star');
 function rate(id) {
     let star = calif.querySelectorAll('i');
@@ -104,6 +111,7 @@ function rate(id) {
     }
 }
 
+//------------ Función que marca el puntaje de estrellas de cada comentario en la lista de comentarios ------------
 function rateScore(score) {
     rateCmnts='';
     for (let a = 0; a < 5; a++) {

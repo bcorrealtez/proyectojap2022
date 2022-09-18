@@ -22,10 +22,7 @@ function showImages(){
     return imgList;
 }
 function showProductInfo(){
-    document.getElementById("product-header").innerHTML = `
-    <h1>${currentProduct.name}</h1>
-    <hr>
-    `;
+    document.querySelector("#product-header h1").innerHTML += currentProduct.name;
 
     document.getElementById("prod-info-container").innerHTML = `
     <div class="mt-2">
@@ -167,4 +164,8 @@ document.addEventListener("DOMContentLoaded", function(e){
             showProductComments();
         }
     });
+
+    document.querySelector("#product-header button").addEventListener("click", ()=>{
+        window.location = "products.html"
+    })
 });

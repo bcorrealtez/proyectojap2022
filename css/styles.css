@@ -221,3 +221,11 @@ input[name="staRate"]{
 .infoCmt{
   font-size: 0.8rem;
 }
+
+.infoCmt i {
+  font-size: 0.8rem;
+}
+
+#comenta {
+  max-height: 300px;
+}

@@ -52,36 +52,36 @@ function showProductInfo(){
             <div class="col-md-5 ps-md-4 mb-3">
                 <div class="row h-100 shadow rounded-3 justify-content-center bg-white p-4">
                     <div class="row h-100 rounded-3 justify-content-center bg-light p-3">
-                        <div class="row align-content-center p-3">
-                            <div class="col text-start overflow-hidden">
+                        <div class="row align-content-center p-3 overflow-hidden">
+                            <div class="col text-start">
                                 <h5>Precio</h5>
                             </div>
                             <div class="col text-start">
                                 <p>${currentProduct.currency} ${currentProduct.cost}</p>
                             </div>
                         </div>   
-                        <div class="row align-content-center p-3">
-                            <div class="col text-start overflow-hidden">
+                        <div class="row align-content-center p-3 overflow-hidden">
+                            <div class="col text-start">
                                 <h5>Categoría</h5>
                             </div>
                             <div class="col text-start">
                                 <p>${currentProduct.category}</p>
                             </div>
                         </div>
-                        <div class="row align-content-center p-3">
-                            <div class="col text-start overflow-hidden">    
+                        <div class="row align-content-center p-3 overflow-hidden">
+                            <div class="col text-start">    
                                 <h5>Cantidad de vendidos</h5>
                             </div>
                             <div class="col text-start">
                                 <p>${currentProduct.soldCount}</p>
                             </div>
                         </div>
-                        <div class="row align-content-center p-3 bg-white rounded-3">
-                            <div class="col-12 text-center overflow-hidden">    
+                        <div class="row align-content-center p-3 bg-white rounded-3 overflow-hidden">
+                            <div class="col-12 text-center">    
                                 <h4>Descripción</h4>
                             </div>
                             <hr>
-                            <div class="col text-center">
+                            <div class="col text-center ">
                                 <p>${currentProduct.description}</p>
                             </div>
                         </div>
@@ -117,26 +117,31 @@ function rateScore(score) {
 
 function showProductComments(){
     let commentToAppend='';
+    let splitDate = '';
     for (let i = 0; i < currentComment.length; i++) {
+        splitDate = currentComment[i].dateTime.split(" ", 2)
         commentToAppend+=`
         <div class="row justify-content-center ">
             <div class="row px-3 pt-3 text-muted border-top border-light">
-                <div class="col p-0">
+                <div class="col-xl-10 col-xxl-10 col-md-10 col-9 p-0">
                     <span>${currentComment[i].user}</span>  
+                    <div class="text-break pb-3 pt-0">
+                        <span class="text-dark p-0">${currentComment[i].description}</span> 
+                    </div>
                 </div>
                 <div class="col text-end infoCmt">
-                    <div class="row">
-                        <span class="p-0">${currentComment[i].dateTime}</span>
-                    </div>
                     <div class="row small p-0">
-                        <label class="p-0 pb-1 cmntStars" id="i"> 
+                        <label class="p-0 cmntStars" id="i"> 
                             ${rateScore(currentComment[i].score)}
                         </label>
                     </div>
+                    <div class="row">
+                        <span class="p-0">${splitDate[0]}</span>
+                    </div>
+                    <div class="row">
+                        <span class="p-0">${splitDate[1]}</span>
+                    </div>
                 </div>
-            </div>
-            <div class="row text-break px-3 pb-3 pt-0">
-                <span class="p-0">${currentComment[i].description}</span> 
             </div>
         </div>
         `

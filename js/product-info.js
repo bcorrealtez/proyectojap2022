@@ -4,7 +4,9 @@ function showSlIndicators() {
     for (let i = 0; i < prodImg.length; i++) {
         slideInd+=`
         <div class="col-3 p-1">    
-            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="${i}" aria-current="true" aria-label="Slide ${i+1}" class="p-0 border-0 shadow"><img src="${prodImg[i]}" alt="" class="img-thumbnail d-block w-100"></button>
+            <button type="button" data-bs-target="#productCarousel" data-bs-slide-to="${i}" 
+            aria-current="true" aria-label="Slide ${i+1}" class="p-0 border-0 shadow">
+            <img src="${prodImg[i]}" alt="" class="img-thumbnail d-block w-100"></button>
         </div>
         `;
     }
@@ -114,12 +116,13 @@ function rate(id) {
 //------------ Función que marca el puntaje de estrellas de cada comentario en la lista de comentarios ------------
 function rateScore(score) {
     rateCmnts='';
-    for (let a = 0; a < 5; a++) {
-        a<score ? rateCmnts+="<i class='fa fa-star checked'></i>" : rateCmnts+="<i class='fa fa-star'></i>";
+    for (let i = 0; i < 5; i++) {
+        i<score ? rateCmnts+="<i class='fa fa-star checked'></i>" : rateCmnts+="<i class='fa fa-star'></i>";
     }
     return rateCmnts;
 }
 
+//------------ Función que muestra la lista de comentarios ------------
 function showProductComments(){
     let commentToAppend='';
     let splitDate = '';
@@ -137,7 +140,10 @@ function showProductComments(){
                 <div class="col text-end infoCmt">
                     <div class="row small p-0">
                         <label class="p-0 cmntStars" id="i"> 
-                            ${rateScore(currentComment[i].score)}
+                            ${
+                                rateScore(currentComment[i].score)
+                                // Muestra el puntaje del comentario
+                            }
                         </label>
                     </div>
                     <div class="row">

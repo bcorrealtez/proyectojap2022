@@ -1,6 +1,11 @@
-const user=localStorage.getItem('userMailVal')
+const user = localStorage.getItem('userMailVal');
 
-const nav=document.querySelector('nav');
+function clSesion() {
+  localStorage.clear();
+  window.location.replace("index.html");
+}
+
+const nav = document.querySelector('nav');
 nav.innerHTML=`
 <div class="container">
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -18,8 +23,24 @@ nav.innerHTML=`
     <li class="nav-item">
       <a class="nav-link" href="sell.html">Vender</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="my-profile.html">${user}</a>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"  data-bs-toggle="dropdown" aria-expanded="false">
+          ${user}
+        </a>
+        <ul class="dropdown-menu start-50 mt-1 navbar-dark bg-dark text-center px-3"  aria-labelledby="navbarDropdown">
+          <li class="nav-item">
+            <a class="nav-link" href="cart.html">Mi carrito</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="my-profile.html">Mi perfil</a>
+          </li>
+          <li class="nav-item">
+            <hr class="dropdown-divider bg-light">
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-dark" onclick="clSesion()">Cerrar sesión</button>
+          </li>
+        </ul>
     </li>
   </ul>
 </div>

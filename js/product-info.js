@@ -104,6 +104,23 @@ function showProductInfo(){
     document.querySelector('#primerIndicador').classList.add("active")
 }
 
+function showRelProd() {
+    let relProd = ''; 
+    for (let i = 0; i < currentCatProd.length; i++) {
+        relProd +=`
+        <div class="col-3 p-2 text-center">
+            <div class="p-2 shadow relProdContent rounded-3">
+                <img src="${currentCatProd[i].image}" alt="${currentCatProd[i].description}" class="img-thumbnail d-block w-100">
+                <label class="mt-1 fs-5">${currentCatProd[i].name}</label>
+            </div>
+        </div>
+        `;
+    }
+    document.querySelector('#relProdContent').innerHTML = relProd;
+}
+
+
+
 //------------ Función que marca el puntaje de estrellas al hacer un comentario ------------
 let calif = document.querySelector('#star');
 function rate(id) {
@@ -169,6 +186,13 @@ document.addEventListener("DOMContentLoaded", function(e){
             currentProduct = resultObj.data;
             prodImg = currentProduct.images;
             showProductInfo();
+        }
+    });
+
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok"){
+            currentCatProd = resultObj.data.products;
+            showRelProd();
         }
     });
 

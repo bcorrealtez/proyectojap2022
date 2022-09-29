@@ -1,3 +1,7 @@
+if (localStorage.getItem("userMailVal")) {
+    window.location.replace("home.html");
+}
+
 const dAlerta=document.getElementById("alert-danger");
 
 function setMailValue(valor) {

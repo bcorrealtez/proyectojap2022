@@ -110,7 +110,7 @@ function showRelProd() {
     if (prod.length>0) {
         for (let i = 0; i < prod.length; i++) {
             relProd +=`
-            <div class="col-4 p-2">
+            <div class="p-2">
                 <div class="p-2 shadow border relProdContent rounded-3" onclick=redirProd(${prod[i].id})>
                     <img src="${prod[i].image}" alt="${prod[i].name}" class="img-thumbnail d-block w-100">
                     <label class="mt-1 ms-2 fs-5">${prod[i].name}</label>

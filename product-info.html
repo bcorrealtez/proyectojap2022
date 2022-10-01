@@ -10,7 +10,7 @@
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-   
+
 </head>
 
 <body>
@@ -23,56 +23,68 @@
           <button class="border-0 bg-light p-2 align-self-center me-2"><i class="fa fa-arrow-left fs-4"></i></button>
           <h1></h1>
         </div>
-      <hr>
+        <hr>
       </div>
       <div class="container">
         <div class="row">
           <div id="prod-info-container">
           </div>
         </div>
-        <div class="container mb-3 p-1">
-          <div class="rounded-3 bg-white shadow p-3" id="relProd">
-            <div class="row w-100 px-5 m-auto">
-              <h2 class="p-0">Productos Relacionados</h2>
-              <hr>
-            </div>
-            <div class="d-flex p-3 pt-0 overflow-auto justify-content-evenly" id="relProdContent">
-              <!-- Fila de productos relacionados -->
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center ps-3 pe-3">
-          <div class="p-0 rounded-3 bg-white shadow overflow-hidden row">
-            <div class="col-12 pe-2">
-              <form">
-                <div class="p-3 row"> 
-                    <div class="mb-3">
-                      <textarea id="comenta" placeholder="Añada un comentario" rows="3" class="form-control"></textarea>
+        <div class="row">
+          <div>
+            <div class="mt-2">
+              <div class="row justify-content-center ps-3 pe-3">
+                <div class="col-md-7 mb-3 shadow-lg p-0 rounded-3">
+                  <div class="p-0 rounded-3 bg-white shadow overflow-hidden h-100">
+                    <div class="col-12 pe-2">
+                      <form">
+                        <div class="p-3 row">
+                          <div class="mb-3">
+                            <textarea id="comenta" placeholder="Añada un comentario" rows="3"
+                              class="form-control"></textarea>
+                          </div>
+                          <div id="star" class="p-2 ps-3 col-7">
+                            <span>Califica:</span>
+                            <label>
+                              <i class='fa fa-star' onclick="rate(1)"></i>
+                              <i class='fa fa-star' onclick="rate(2)"></i>
+                              <i class='fa fa-star' onclick="rate(3)"></i>
+                              <i class='fa fa-star' onclick="rate(4)"></i>
+                              <i class='fa fa-star' onclick="rate(5)"></i>
+                            </label>
+                          </div>
+                          <div class="col-5 text-end">
+                            <button class="btn btn-warning">Comentar</button>
+                          </div>
+                        </div>
+                        </form>
                     </div>
-                    <div id="star" class="p-2 ps-3 col-7">
-                      <span>Califica:</span>
-                      <label> 
-                        <i class='fa fa-star' onclick="rate(1)"></i>
-                        <i class='fa fa-star' onclick="rate(2)"></i>
-                        <i class='fa fa-star' onclick="rate(3)"></i>
-                        <i class='fa fa-star' onclick="rate(4)"></i>
-                        <i class='fa fa-star' onclick="rate(5)"></i>
-                      </label>
+                    <div class="col-12">
+                      <div class="row justify-content-center p-2" id="cmntSection">
+
+                      </div>
                     </div>
-                    <div class="col-5 text-end">
-                      <button class="btn btn-warning">Comentar</button>
-                    </div>
+                  </div>
                 </div>
-              </form>
-            </div>
-            <div class="col-12">
-              <div class="row justify-content-center p-2" id="cmntSection">
-                
+                <div class="col-md-5 ps-md-4 mb-3">
+                  <div class="row h-100 shadow rounded-3 justify-content-center bg-white p-4">
+                    <div class="row h-100 rounded-3 justify-content-center bg-light p-3" id="relProd">
+                      <div class="row w-100 px-5 m-auto">
+                        <h2 class="p-0">Productos Relacionados</h2>
+                        <hr>
+                      </div>
+                      <div class="p-3 pt-0 overflow-auto" id="relProdContent">
+                        <!-- Fila de productos relacionados -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </main>
   <footer class="text-muted">

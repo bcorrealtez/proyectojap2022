@@ -107,13 +107,13 @@ function showProductInfo(){
 function showRelProd() {
     let relProd = ''; 
     let prod = currentProduct.relatedProducts;
-    if (prod.length>0) {
+    if (prod) {
         for (let i = 0; i < prod.length; i++) {
             relProd +=`
             <div class="p-2">
                 <div class="p-2 shadow border relProdContent rounded-3" onclick=redirProd(${prod[i].id})>
                     <img src="${prod[i].image}" alt="${prod[i].name}" class="img-thumbnail d-block w-100">
-                    <label class="mt-1 ms-2 fs-5">${prod[i].name}</label>
+                    <label class="mt-1 ms-2 text-muted fs-6">${prod[i].name}</label>
                 </div>
             </div>
             `;
@@ -185,7 +185,7 @@ function showProductComments(){
         
         
     }
-    document.getElementById('cmntSection').innerHTML=commentToAppend;
+    document.getElementById('cmntSection').innerHTML+=commentToAppend;
 }
 
 document.addEventListener("DOMContentLoaded", function(e){

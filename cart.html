@@ -20,18 +20,75 @@
         <h1>Mi carrito</h1>
       </div>
       <div class="row">
-        <div class="col-7">
-          <div class="row rounded-3 p-2 bg-white shadow">
-            <div class="col-3 p-0 pe-2">
+        <div class="col-12 col-md-7 col-lg-6 mb-4" id="listaCompra">
+          <div class="row rounded-3 p-2 bg-white shadow mb-2">
+            <div class="col-3 p-0 pe-2 my-auto">
               <img src="img/car1.jpg" alt="" class="img-fluid rounded">
             </div>
-            <div class="col-9">
-              
+            <div class="col-9 ps-3">
+              <div class="row">
+                <h1>Chevrolet Onyx</h1>
+              </div>
+              <div class="row align-items-center p-0">
+                <div class="d-flex">
+                  <p class="mb-0 text-muted text-decoration-underline">Costo</p>
+                  <p class="mb-0">: USD 12999</p>
+                </div>
+              </div>
+              <div class="row d-flex mt-2">
+                <div class="input-group">
+                  <span class="me-3 p-0 bg-white">$ 3224472</span>
+                  <i class="fa fa-minus input-group-text d-flex px-1 py-0 rounded-start"></i>
+                  <input type="text" class="form-control p-1 py-0 border-start-0 text-center border-end-0" value="1" min="1"
+                    aria-label="Dollar amount">
+                  <i class="fa fa-plus input-group-text d-flex px-1 py-0"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-5">
-
+        <div class="col-12 col-md-5 col-lg-6 d-flex justify-content-center">
+          <form>
+            <h2>Tipo de envío</h2>
+            <hr class="mt-0">
+            <div class="ps-3">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="envioT" id="premium">
+                <label class="form-check-label" for="premium">
+                  Premium 2 a 5 días (15%)
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="envioT" id="express">
+                <label class="form-check-label" for="express">
+                  Express 5 a 8 días (7%)
+                </label>
+              </div>
+              <div class="form-check mb-4">
+                <input class="form-check-input" type="radio" name="envioT" id="standard">
+                <label class="form-check-label" for="standard">
+                  Standard 12 a 15 días (5%)
+                </label>
+              </div>
+            </div>
+            <h2>Tipo de envío</h2>
+            <hr class="mt-0">
+            <div class="ps-3">
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="calle">Calle</span>
+                <input type="text" class="form-control mw-100" aria-label="Sizing example input" aria-describedby="calle">
+              </div>
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="numero">Numero</span>
+                <input type="text" class="form-control mw-100" aria-label="Sizing example input" aria-describedby="numero">
+              </div>
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="esquina">Esquina</span>
+                <input type="text" class="form-control mw-100" aria-label="Sizing example input" aria-describedby="esquina">
+              </div>
+            </div>
+          </form>
+          
         </div>
       </div>
     </div>

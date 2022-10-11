@@ -20,11 +20,11 @@ function showCartList() {
                     </div>
                     <div class="row d-flex mt-2">
                         <div class="input-group">
-                            <span class="me-3 p-0 bg-white">${currentCartList[i].currency} ${currentCartList[i].unitCost * currentCartList[i].count}</span>
-                            <i class="fa fa-minus input-group-text d-flex px-1 py-0 rounded-start"></i>
-                            <input type="text" class="form-control p-1 py-0 border-start-0 text-center border-end-0" value="${currentCartList[i].count}" min="1"
-                                aria-label="Dollar amount">
-                            <i class="fa fa-plus input-group-text d-flex px-1 py-0"></i>
+                            <span class="me-3 p-0 bg-white" id="price${i}">${currentCartList[i].currency} ${currentCartList[i].unitCost * currentCartList[i].count}</span>
+                            <i class="fa fa-minus input-group-text d-flex px-1 py-0 rounded-start" onclick="cambioCantMenos(${i})"></i>
+                            <input type="text" id="cant${i}" class="form-control p-1 py-0 border-start-0 text-center border-end-0 bg-white" value="${currentCartList[i].count}" min="1"
+                                aria-label="Dollar amount" disabled>
+                            <i class="fa fa-plus input-group-text d-flex px-1 py-0" onclick="cambioCantMas(${i})"></i>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,20 @@ function showCartList() {
     }
 }
 
+function cambioCantMas(item){
+    let nCount = currentCartList[item].count+1;
+    currentCartList[item].count = nCount
+    document.getElementById("cant"+item).value = nCount;
+    document.getElementById("price"+item).innerHTML = `${currentCartList[item].currency} ${currentCartList[item].unitCost * nCount}`;
+}
 
+function cambioCantMenos(item){
+    let nCount = Math.max(currentCartList[item].count-1 , 1);
+    currentCartList[item].count = nCount
+    document.getElementById("cant"+item).value = nCount;
+    document.getElementById("price"+item).innerHTML = `${currentCartList[item].currency} ${currentCartList[item].unitCost * nCount}`;
+
+}
 
 document.addEventListener('DOMContentLoaded',(e)=>{
     getJSONData(CART_INFO_URL).then(function(resultObj){

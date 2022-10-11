@@ -231,5 +231,15 @@ input[name="staRate"]{
 }
 
 div.input-group input {
-  max-width: 18px;
+  max-width: 36px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }

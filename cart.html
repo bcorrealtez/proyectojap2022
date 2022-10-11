@@ -53,7 +53,7 @@
             <hr class="mt-0">
             <div class="ps-3">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="envioT" id="premium">
+                <input class="form-check-input" type="radio" name="envioT" id="premium" checked>
                 <label class="form-check-label" for="premium">
                   Premium 2 a 5 días (15%)
                 </label>
@@ -65,30 +65,29 @@
                 </label>
               </div>
               <div class="form-check mb-4">
-                <input class="form-check-input" type="radio" name="envioT" id="standard">
+                <input class="form-check-input" type="radio" name="envioT" id="standard" >
                 <label class="form-check-label" for="standard">
                   Standard 12 a 15 días (5%)
                 </label>
               </div>
             </div>
-            <h2>Tipo de envío</h2>
+            <h2>Dirección de envío</h2>
             <hr class="mt-0">
             <div class="ps-3">
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="calle">Calle</span>
-                <input type="text" class="form-control mw-100" aria-label="Sizing example input" aria-describedby="calle">
+              <div class="mb-2">
+                <label for="calle" class="col-form-label col-form-label-sm py-1">Calle</label>
+                <input type="text" class="form-control form-control-sm" id="calle" aria-label="dir input" aria-describedby="calle">
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="numero">Numero</span>
-                <input type="text" class="form-control mw-100" aria-label="Sizing example input" aria-describedby="numero">
+              <div class="mb-2">
+                <label for="calle" class="col-form-label col-form-label-sm py-1">Esquina</label>
+                <input type="text" class="form-control form-control-sm" aria-label="dir input" aria-describedby="esquina">
               </div>
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="esquina">Esquina</span>
-                <input type="text" class="form-control mw-100" aria-label="Sizing example input" aria-describedby="esquina">
+              <div>
+                <label for="calle" class="col-form-label col-form-label-sm py-1">Número</label>
+                <input type="number" class="form-control form-control-sm" aria-label="dir input" aria-describedby="numero">
               </div>
             </div>
           </form>
-          
         </div>
       </div>
     </div>

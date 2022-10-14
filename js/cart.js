@@ -8,9 +8,9 @@ function showCartList() {
                 <div class="col-4 p-0 pe-2 my-auto">
                     <img src=${currentCartList[i].image} alt="" class="img-fluid rounded">
                 </div>
-                <div class="col-8 ps-3">
+                <div class="col-8 ps-3 flex-column align-content-center">
                     <div class="row">
-                        <h1>${currentCartList[i].name}</h1>
+                        <h2>${currentCartList[i].name}</h2>
                     </div>
                     <div class="row align-items-center p-0">
                         <div class="d-flex">
@@ -31,23 +31,24 @@ function showCartList() {
             </div>
             `
         }
-        lisCarrito.innerHTML = htmlConToAppend;
+        lisCarrito.innerHTML += htmlConToAppend;
     }
+}
+
+function cambioCant(nCount, item) {
+    currentCartList[item].count = nCount
+    document.getElementById("cant"+item).value = nCount;
+    document.getElementById("price"+item).innerHTML = `${currentCartList[item].currency} ${currentCartList[item].unitCost * nCount}`;
 }
 
 function cambioCantMas(item){
     let nCount = currentCartList[item].count+1;
-    currentCartList[item].count = nCount
-    document.getElementById("cant"+item).value = nCount;
-    document.getElementById("price"+item).innerHTML = `${currentCartList[item].currency} ${currentCartList[item].unitCost * nCount}`;
+    cambioCant(nCount, item)
 }
 
 function cambioCantMenos(item){
     let nCount = Math.max(currentCartList[item].count-1 , 1);
-    currentCartList[item].count = nCount
-    document.getElementById("cant"+item).value = nCount;
-    document.getElementById("price"+item).innerHTML = `${currentCartList[item].currency} ${currentCartList[item].unitCost * nCount}`;
-
+    cambioCant(nCount, item)
 }
 
 document.addEventListener('DOMContentLoaded',(e)=>{

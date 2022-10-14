@@ -38,7 +38,7 @@ nav.innerHTML=`
             <hr class="dropdown-divider bg-light">
           </li>
           <li class="nav-item">
-            <button class="btn btn-dark" onclick="clSesion()">Cerrar sesión</button>
+            <button class="btn btn-dark px-2" onclick="clSesion()">Cerrar sesión</button>
           </li>
         </ul>
     </li>

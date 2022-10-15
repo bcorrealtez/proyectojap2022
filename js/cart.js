@@ -55,7 +55,6 @@ document.addEventListener('DOMContentLoaded',(e)=>{
     getJSONData(CART_INFO_URL).then(function(resultObj){
         if (resultObj.status==="ok") {
             currentCartList = resultObj.data.articles
-            console.log(currentCartList)
             showCartList();
         }
     });

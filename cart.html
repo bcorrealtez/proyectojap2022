@@ -21,50 +21,124 @@
       </div>
       <div class="row">
         <div class="col-12 col-md-7 mb-4" id="listaCompra">
-          
+
         </div>
-        <div class="col-12 col-md-5 flex-column justify-content-center px-4">
-          
-          <form>
-            <h2>Tipo de envío</h2>
-            <hr class="mt-0">
-            <div class="ps-3">
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="envioT" id="premium" checked>
-                <label class="form-check-label" for="premium">
-                  Premium 2 a 5 días (15%)
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="envioT" id="express">
-                <label class="form-check-label" for="express">
-                  Express 5 a 8 días (7%)
-                </label>
-              </div>
-              <div class="form-check mb-4">
-                <input class="form-check-input" type="radio" name="envioT" id="standard" >
-                <label class="form-check-label" for="standard">
-                  Standard 12 a 15 días (5%)
-                </label>
-              </div>
-            </div>
-            <h2>Dirección de envío</h2>
-            <hr class="mt-0">
-            <div class="ps-3">
-              <div class="mb-2">
-                <label for="calle" class="col-form-label col-form-label-sm py-1">Calle</label>
-                <input type="text" class="form-control form-control-sm" id="calle" aria-label="dir input" aria-describedby="calle">
-              </div>
-              <div class="mb-2">
-                <label for="calle" class="col-form-label col-form-label-sm py-1">Esquina</label>
-                <input type="text" class="form-control form-control-sm" aria-label="dir input" aria-describedby="esquina">
+        <div class="col-12 col-md-5 p-0 px-md-2">
+          <div class="p-4 shadow rounded">
+            <form class="row g-3 needs-validation" novalidate>
+              <div>
+                <h2>Tipo de envío</h2>
+                <hr class="mt-0">
+                <div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="envioT" id="premium" checked>
+                    <label class="form-check-label text-dark" for="premium">
+                      Premium 2 a 5 días (15%)
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="envioT" id="express">
+                    <label class="form-check-label text-dark" for="express">
+                      Express 5 a 8 días (7%)
+                    </label>
+                  </div>
+                  <div class="form-check mb-4">
+                    <input class="form-check-input" type="radio" name="envioT" id="standard">
+                    <label class="form-check-label text-dark" for="standard">
+                      Standard 12 a 15 días (5%)
+                    </label>
+                  </div>
+                </div>
               </div>
               <div>
-                <label for="calle" class="col-form-label col-form-label-sm py-1">Número</label>
-                <input type="number" class="form-control form-control-sm" aria-label="dir input" aria-describedby="numero">
+                <h2>Dirección de envío</h2>
+                <hr class="mt-0">
+                <div>
+                  <div class="mb-2">
+                    <label for="calle" class="col-form-label col-form-label-md py-0">Calle</label>
+                    <input type="text" class="form-control" id="calle" required>
+                  </div>
+                  <div class="mb-2">
+                    <label for="esquina" class="col-form-label col-form-label-md py-0">Esquina</label>
+                    <input type="text" class="form-control" id="esquina" required>
+                  </div>
+                  <div>
+                    <label for="numero" class="col-form-label col-form-label-md py-0">Número</label>
+                    <input type="text" class="form-control" id="numero" required>
+                  </div>
+                </div>
               </div>
-            </div>
-          </form>
+              <div class="bg-white py-2 px-3 border rounded">
+                <h2>Resúmen de compra</h2>
+                <div class="d-flex justify-content-between mt-4">
+                  <p>Subtotal</p>
+                  <p>$4357893</p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <p>Costo de envío</p>
+                  <p>$435</p>
+                </div>
+                <hr class="mt-0">
+                <div class="d-flex justify-content-between">
+                  <p>Total</p>
+                  <p>$4357893</p>
+                </div>
+                <button class="btn btn-primary col-12 mb-2" type="submit" id="modalBtn"
+                  data-bs-target="#modalCompra">Realizar compra</button>
+              </div>
+              <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Finalizar compra</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form class="row g-3 needs-validation" novalidate>
+                        <div>
+                          <h2>Método de pago</h2>
+                          <hr class="mt-0">
+                          <div>
+                            <div class="bg-light p-2 border rounded" id="tarjeta">
+                              <label class="form-check-label text-dark">
+                                <i class="fa fa-credit-card"></i> Tarjeta
+                              </label>
+                              <div class="collapse" id="collapseTarjeta">
+                                <div class="row m-0 gy-2 p-3 justify-content-between">
+                                  <div class="col-12">
+                                    <input type="tel" class="form-control" name="" id="" maxlength="17" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" required>
+                                  </div>
+                                  <div class="col-6">
+                                    <input type="tel" class="form-control" name="" id="" required>
+                                  </div>
+                                  <div class="col-5">
+                                    <input type="tel" class="form-control" name="" id="" required>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="bg-light p-2 my-2 border rounded" id="transferencia">
+                              <label class="form-check-label text-dark">
+                                <i class="fa fa-money-bill"></i> Transferencia Bancaria
+                              </label>
+                              <div class="collapse" id="collapseTransfer">
+                                <div class="p-3">
+
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                      <div class="modal-footer">
+                        <button class="btn btn-primary col-12 m-0" type="submit" id="compraBtn">Realizar compra</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
@@ -94,3 +168,15 @@
 </body>
 
 </html>
+<!-- 
+    <div class="mb-2">
+      <label for="calle" class="col-form-label col-form-label-sm py-1">Esquina</label>
+      <input type="text" class="form-control form-control-sm" aria-label="dir input"
+        aria-describedby="esquina">
+    </div>
+    <div>
+      <label for="calle" class="col-form-label col-form-label-sm py-1">Número</label>
+      <input type="number" class="form-control form-control-sm" aria-label="dir input"
+        aria-describedby="numero">
+    </div>
+-->

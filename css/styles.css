@@ -244,3 +244,11 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.form-floating > .form-control::placeholder {
+  color: rgba(128, 128, 128, 0.452);
+}
+
+.form-floating > .form-control:not(:focus)::placeholder {
+  color: transparent;
+}

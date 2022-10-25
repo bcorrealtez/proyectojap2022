@@ -31,19 +31,19 @@
                 <hr class="mt-0">
                 <div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="envioT" id="premium" checked>
+                    <input class="form-check-input" type="radio" name="envioT" id="premium" onclick="shipPrice=0.15" checked required>
                     <label class="form-check-label text-dark" for="premium">
                       Premium 2 a 5 días (15%)
                     </label>
                   </div>
                   <div class="form-check">
-                    <input class="form-check-input" type="radio" name="envioT" id="express">
+                    <input class="form-check-input" type="radio" name="envioT" id="express" onclick="shipPrice=0.07" required>
                     <label class="form-check-label text-dark" for="express">
                       Express 5 a 8 días (7%)
                     </label>
                   </div>
                   <div class="form-check mb-4">
-                    <input class="form-check-input" type="radio" name="envioT" id="standard">
+                    <input class="form-check-input" type="radio" name="envioT" id="standard" onclick="shipPrice=0.05" required>
                     <label class="form-check-label text-dark" for="standard">
                       Standard 12 a 15 días (5%)
                     </label>
@@ -72,72 +72,81 @@
                 <h2>Resúmen de compra</h2>
                 <div class="d-flex justify-content-between mt-4">
                   <p>Subtotal</p>
-                  <p>$4357893</p>
+                  <p id="resumenSubtotal"></p>
                 </div>
                 <div class="d-flex justify-content-between">
                   <p>Costo de envío</p>
-                  <p>$435</p>
+                  <p id="resumenEnvio"></p>
                 </div>
                 <hr class="mt-0">
                 <div class="d-flex justify-content-between">
                   <p>Total</p>
-                  <p>$4357893</p>
+                  <p id="resumenTotal"></p>
                 </div>
                 <button class="btn btn-primary col-12 mb-2" type="submit" id="modalBtn"
                   data-bs-target="#modalCompra">Realizar compra</button>
               </div>
-              <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Finalizar compra</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form class="row g-3 needs-validation" novalidate>
+            </form>
+            <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Finalizar compra</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="row g-3 needs-validation" novalidate>
+                      <div>
+                        <h2>Método de pago</h2>
+                        <hr class="mt-0">
                         <div>
-                          <h2>Método de pago</h2>
-                          <hr class="mt-0">
-                          <div>
-                            <div class="bg-light p-2 border rounded" id="tarjeta">
-                              <label class="form-check-label text-dark">
-                                <i class="fa fa-credit-card"></i> Tarjeta
-                              </label>
-                              <div class="collapse" id="collapseTarjeta">
-                                <div class="row m-0 gy-2 p-3 justify-content-between">
-                                  <div class="col-12">
-                                    <input type="tel" class="form-control" name="" id="" maxlength="17" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" required>
-                                  </div>
-                                  <div class="col-6">
-                                    <input type="tel" class="form-control" name="" id="" required>
-                                  </div>
-                                  <div class="col-5">
-                                    <input type="tel" class="form-control" name="" id="" required>
-                                  </div>
+                          <div class="bg-light p-2 border rounded" id="tarjeta">
+                            <label class="form-check-label text-dark">
+                              <i class="fa fa-credit-card"></i> Tarjeta
+                            </label>
+                            <div class="collapse" id="collapseTarjeta">
+                              <div class="row m-0 gy-2 p-3 justify-content-between">
+                                <div class="form-floating p-0 col-12">
+                                  <input type="tel" class="form-control" placeholder="XXXX-XXXX-XXXX-XXXX" id="ccNum"
+                                    required>
+                                  <label for="ccNum">Número de tarjeta</label>
+                                </div>
+                                <div class="form-floating p-0 col-6">
+                                  <input type="tel" class="form-control" placeholder="mm/aa" name="" id="venc" required>
+                                  <label class="m-0" for="venc">Vencimiento</label>
+                                </div>
+                                <div class="form-floating p-0 col-5">
+                                  <input type="tel" class="form-control" placeholder="  " id="cvv" required>
+                                  <label for="cvv">CVV</label>
                                 </div>
                               </div>
                             </div>
-                            <div class="bg-light p-2 my-2 border rounded" id="transferencia">
-                              <label class="form-check-label text-dark">
-                                <i class="fa fa-money-bill"></i> Transferencia Bancaria
-                              </label>
-                              <div class="collapse" id="collapseTransfer">
-                                <div class="p-3">
-
+                          </div>
+                          <div class="bg-light p-2 my-2 border rounded" id="transferencia">
+                            <label class="form-check-label text-dark">
+                              <i class="fa fa-money-bill"></i> Transferencia Bancaria
+                            </label>
+                            <div class="collapse" id="collapseTransfer">
+                              <div class="row m-0 gy-2 p-3 justify-content-between">
+                                <div class="form-floating p-0 col-12">
+                                  <input type="tel" class="form-control" placeholder="  " id="cBank" required>
+                                  <label for="cBank">Cuenta bancaria</label>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </form>
-                      <div class="modal-footer">
-                        <button class="btn btn-primary col-12 m-0" type="submit" id="compraBtn">Realizar compra</button>
                       </div>
-                    </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-primary col-12 m-0" type="submit" id="compraBtn">Realizar
+                          compra</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
-            </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -153,6 +162,10 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+  <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+    <p></p>
+    <button type="button" class="btn-close" aria-label="Close"></button>
+  </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -168,15 +181,3 @@
 </body>
 
 </html>
-<!-- 
-    <div class="mb-2">
-      <label for="calle" class="col-form-label col-form-label-sm py-1">Esquina</label>
-      <input type="text" class="form-control form-control-sm" aria-label="dir input"
-        aria-describedby="esquina">
-    </div>
-    <div>
-      <label for="calle" class="col-form-label col-form-label-sm py-1">Número</label>
-      <input type="number" class="form-control form-control-sm" aria-label="dir input"
-        aria-describedby="numero">
-    </div>
--->

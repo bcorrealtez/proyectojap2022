@@ -1,4 +1,11 @@
 const lisCarrito = document.getElementById('listaCompra')
+var priceCount = 0;
+var shipPrice = 0.15;
+function changePrice(item) {
+    priceCount += currentCartList[item].count * (currentCartList[item].currency == "USD" ? currentCartList[item].unitCost : currentCartList[item].unitCost / 43);
+    document.getElementById("resumenEnvio").innerHTML = `USD ${priceCount*shipPrice}`;
+}
+
 function showCartList() {
     let htmlConToAppend = '';
     if (currentCartList) {
@@ -30,7 +37,11 @@ function showCartList() {
                 </div>
             </div>
             `
+            changePrice(i)
+
         }
+
+        document.getElementById("resumenSubtotal").innerHTML = `USD ${priceCount}`;
         lisCarrito.innerHTML += htmlConToAppend;
     }
 }
@@ -38,16 +49,24 @@ function showCartList() {
 function cambioCant(nCount, item) {
     currentCartList[item].count = nCount
     document.getElementById("cant" + item).value = nCount;
-    document.getElementById("price" + item).innerHTML = `${currentCartList[item].currency} ${currentCartList[item].unitCost * nCount}`;
+    let prodPriceC = currentCartList[item].unitCost * nCount
+    document.getElementById("price" + item).innerHTML = `USD ${prodPriceC}`;
+    document.getElementById("resumenSubtotal").innerHTML = `USD ${priceCount}`;
+    document.getElementById("resumenEnvio").innerHTML = `USD ${priceCount * shipPrice}`;
 }
 
 function cambioCantMas(item) {
     let nCount = currentCartList[item].count + 1;
+    priceCount += currentCartList[item].unitCost
     cambioCant(nCount, item)
 }
 
 function cambioCantMenos(item) {
-    let nCount = Math.max(currentCartList[item].count - 1, 1);
+    let nCount = currentCartList[item].count;
+    if (nCount != 1) {
+        priceCount -= currentCartList[item].unitCost
+    }
+    nCount = Math.max(currentCartList[item].count - 1, 1);
     cambioCant(nCount, item)
 }
 
@@ -58,40 +77,66 @@ document.addEventListener('DOMContentLoaded', (e) => {
             showCartList();
         }
     });
+    getJSONData(CART_BUY_URL).then(function (resultObj) {
+        if (resultObj.status === "ok") {
+            currentMsg = resultObj.data.msg
+            document.querySelector("#alert-success p").innerHTML = currentMsg;
+        }
+    });
 });
 
 let tarRadio = document.getElementById("tarjeta");
 let tarTrans = document.getElementById("transferencia");
 
-tarRadio.addEventListener("click", () =>{
+tarRadio.addEventListener("click", () => {
     document.getElementById('collapseTransfer').classList.remove("show");
     document.getElementById('collapseTarjeta').classList.add("show");
+    tarRadio.querySelectorAll('input').forEach(elem => elem.removeAttribute('disabled', ''));
+    tarTrans.querySelector('input').setAttribute('disabled', '');
 });
 
-tarTrans.addEventListener("click", () =>{
+tarTrans.addEventListener("click", () => {
     document.getElementById('collapseTransfer').classList.add("show")
     document.getElementById('collapseTarjeta').classList.remove("show")
+    tarRadio.querySelectorAll('input').forEach(elem => elem.setAttribute('disabled', ''));
+    tarTrans.querySelector('input').removeAttribute('disabled', '');
 });
 
+const sAlerta = document.getElementById("alert-success");
+const sClose = sAlerta.querySelector('.btn-close');
+function showAlertSuccess() {
+    sAlerta.classList.add("show");
+}
 (function () {
     'use strict'
 
     var forms = document.querySelectorAll('.needs-validation')
-
+    var ind = 0;
     Array.prototype.slice.call(forms)
         .forEach(function (form) {
             form.addEventListener('submit', function (event) {
                 event.preventDefault()
                 event.stopPropagation()
                 if (form.checkValidity()) {
+                    document.getElementById("modalBtn").setAttribute("data-bs-toggle", "modal")
+                    document.getElementById("modalBtn").click()
+                    document.getElementById("modalBtn").removeAttribute("data-bs-toggle", "modal")
+                    if (ind == 1) {
+                        showAlertSuccess();
+                        sClose.addEventListener('click', () => {
+                            form.submit();
+
+                        });
+                    }
+                    ind++;
                 }
-                document.getElementById("modalBtn").setAttribute("data-bs-toggle", "modal")
-                document.getElementById("modalBtn").click()
-                document.getElementById("modalBtn").removeAttribute("data-bs-toggle", "modal")
                 form.classList.add('was-validated')
             }, false)
-        })
+        });
+
 })()
+
+
 
 /*
 {

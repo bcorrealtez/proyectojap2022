@@ -1,5 +1,5 @@
 const btnAddCart = document.getElementById('addCart');
-
+var articles = [];
 //------------ Indicadores de carousel con imágenes pequeñas del producto ------------
 function showSlIndicators() {
     let slideInd = '';
@@ -33,7 +33,7 @@ function showImages() {
 function showProductInfo() {
     document.querySelector("#product-header h1").innerHTML += currentProduct.name;
     document.querySelector('.carousel-inner').innerHTML = showImages();
-    document.querySelector('#indicators').innerHTML = showSlIndicators(); 
+    document.querySelector('#indicators').innerHTML = showSlIndicators();
     let prodInfoDiv = document.querySelectorAll("#prod-info-container>div");
     prodInfoDiv[0].innerHTML = `
     <div class="col d-flex justify-content-between">
@@ -153,6 +153,7 @@ function showProductComments() {
     }
     document.getElementById('cmntSection').innerHTML += commentToAppend;
 }
+const divCartBtn = document.getElementById("btnCarrito")
 
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(PRODUCT_INFO_URL).then(function (resultObj) {
@@ -174,4 +175,25 @@ document.addEventListener("DOMContentLoaded", function (e) {
     document.querySelector("#product-header button").addEventListener("click", () => {
         window.location = "products.html"
     })
+
+    if (localStorage.getItem('articles')) {
+        articles = JSON.parse(localStorage.getItem('articles'))
+    }
+
+    if (articles.some(elem => elem.id == localStorage.getItem("prodID"))) {
+        divCartBtn.innerHTML = `<a class="btn btn-dark w-100 overflow-hidden" href="cart.html">Ver en el carrito</a>`
+    } else {
+        document.getElementById('addCart').addEventListener('click', () => {
+            articles.push({
+                "id": currentProduct.id,
+                "name": currentProduct.name,
+                "count": 1,
+                "unitCost": currentProduct.cost,
+                "currency": currentProduct.currency,
+                "image": currentProduct.images[0]
+            })
+            localStorage.setItem('articles', JSON.stringify(articles));
+            divCartBtn.innerHTML = `<a class="btn btn-dark w-100 overflow-hidden" href="cart.html">Ver en el carrito</a>`
+        })
+    }
 });

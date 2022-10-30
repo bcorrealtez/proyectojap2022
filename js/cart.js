@@ -3,6 +3,7 @@ const checkboxes = document.querySelectorAll('.form-check-input');
 var priceCount = 0;
 var shipPrice = 0.15;
 
+//------------ Muestra los precios de la compra ------------
 function innerPrice() {
     document.getElementById("resumenSubtotal").innerHTML = `USD ${Math.round(priceCount * 100) / 100}`;
     document.getElementById("resumenEnvio").innerHTML = `USD ${Math.round(priceCount * shipPrice * 100) / 100}`;
@@ -44,7 +45,7 @@ function showCartList() {
                 </div>
             </div>
             `
-            priceCount += currentCartList[i].count * (currentCartList[i].currency == "USD" ? currentCartList[i].unitCost : currentCartList[i].unitCost * 0.024);
+            priceCount += currentCartList[i].count * (currentCartList[i].currency == "USD" ? currentCartList[i].unitCost : currentCartList[i].unitCost * 0.0245);
 
         }
         innerPrice();
@@ -82,6 +83,7 @@ checkboxes[2].addEventListener('click', () => {
     innerPrice();
 })
 
+//------------ Cambia la cantidad de artículos y precios correspondientes ------------
 function cambioCant(nCount, item) {
     currentCartList[item].count = nCount
     document.getElementById("cant" + item).value = nCount;
@@ -90,18 +92,18 @@ function cambioCant(nCount, item) {
     innerPrice();
 }
 
-//------------ Aumenta la cantidad de artículos y precios correspondientes (Subtotal de artículo, Subtotal de compra, envío y total de compra) ------------
+//------------ Aumenta la cantidad de artículos y precios correspondientes ------------
 function cambioCantMas(item) {
     let nCount = currentCartList[item].count + 1;
-    priceCount += (currentCartList[item].currency == "USD" ? currentCartList[item].unitCost : currentCartList[item].unitCost * 0.024);
+    priceCount += (currentCartList[item].currency == "USD" ? currentCartList[item].unitCost : currentCartList[item].unitCost * 0.0245);
     cambioCant(nCount, item)
 }
 
-//------------ Disminuye la cantidad de artículos y precios correspondientes (Subtotal de artículo, Subtotal de compra, envío y total de compra) ------------
+//------------ Disminuye la cantidad de artículos y precios correspondientes ------------
 function cambioCantMenos(item) {
     let nCount = currentCartList[item].count;
-    if (nCount != 1) {
-        priceCount -= (currentCartList[item].currency == "USD" ? currentCartList[item].unitCost : currentCartList[item].unitCost * 0.024);
+    if (nCount > 1) {
+        priceCount -= (currentCartList[item].currency == "USD" ? currentCartList[item].unitCost : currentCartList[item].unitCost * 0.0245);
     }
     nCount = Math.max(currentCartList[item].count - 1, 1);
     cambioCant(nCount, item)
@@ -161,27 +163,30 @@ function showAlertSuccess() {
     'use strict'
 
     var forms = document.querySelectorAll('.needs-validation')
-    var ind = 0;
-    Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                event.preventDefault()
-                event.stopPropagation()
-                if (form.checkValidity()) {
-                    document.getElementById("modalBtn").setAttribute("data-bs-toggle", "modal")
-                    document.getElementById("modalBtn").click()
-                    document.getElementById("modalBtn").removeAttribute("data-bs-toggle", "modal")
-                    if (ind == 1) {
-                        showAlertSuccess();
-                        sClose.addEventListener('click', () => {
-                            currentCartList.splice(0, currentCartList.length);
-                            localStorage.setItem('articles', JSON.stringify(currentCartList));
-                            form.submit();
-                        });
-                    }
-                    ind++;
-                }
-                form.classList.add('was-validated')
-            }, false)
-        });
+    var form = Array.prototype.slice.call(forms)
+    form[0].addEventListener('submit', function (event) {
+        event.preventDefault()
+        event.stopPropagation()
+        if (form[0].checkValidity()) {
+            document.getElementById("modalBtn").setAttribute("data-bs-toggle", "modal")
+            document.getElementById("modalBtn").click()
+            document.getElementById("modalBtn").removeAttribute("data-bs-toggle", "modal")
+        }
+        form[0].classList.add('was-validated')
+    }, false)
+    
+    form[1].addEventListener('submit', function (event) {
+        event.preventDefault()
+        event.stopPropagation()
+        if (form[1].checkValidity()) {
+            showAlertSuccess();
+            sClose.addEventListener('click', () => {
+                currentCartList.splice(0, currentCartList.length);
+                localStorage.setItem('articles', JSON.stringify(currentCartList));
+                form[1].submit();
+
+            });
+        }
+        form[1].classList.add('was-validated')
+    }, false)
 })()

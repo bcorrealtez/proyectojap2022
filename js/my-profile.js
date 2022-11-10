@@ -17,3 +17,9 @@
         }, false)
       })
   })()
+
+
+  obj = {
+    nombre: "juan",
+    apellido: "alberto"
+  }

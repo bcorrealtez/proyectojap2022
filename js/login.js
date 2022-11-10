@@ -2,7 +2,7 @@ if (localStorage.getItem("userMailVal")) {
     window.location.replace("home.html");
 }
 
-const dAlerta=document.getElementById("alert-danger");
+const dAlerta = document.getElementById("alert-danger");
 
 function setMailValue(valor) {
     localStorage.setItem("userMailVal", valor);
@@ -12,27 +12,37 @@ function setMailValue(valor) {
 function showAlertError() {
     dAlerta.classList.add("show");
 }
-const form=document.querySelector('form');
-const btn=document.querySelector('#ingBtn');
+const form = document.querySelector('form');
+const btn = document.querySelector('#ingBtn');
 
-btn.addEventListener('click', (e)=>{
-    e.preventDefault();
-    const formData = Object.fromEntries(new FormData(form).entries());
-    var mail=formData.email;
-    var pass=formData.pass;
 
-    if (mail=='' || pass=='' || pass.length<8) {
-        showAlertError();
-    } else {
-        setMailValue(mail);
-    }
+(function () {
+    'use strict'
 
-});
+    var forms = document.querySelectorAll('.needs-validation')
+    
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                if (!form.checkValidity()) {
+                    showAlertError();
+                } else {
+                    var mail = form.email.value;
+                    setMailValue(mail);
+                }
 
-const dClose=dAlerta.querySelector('.btn-close');
 
-dClose.addEventListener('click', ()=>{
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+})()
+const dClose = dAlerta.querySelector('.btn-close');
+
+dClose.addEventListener('click', () => {
     dAlerta.classList.remove("show");
-    form.querySelector('#email').value='';
-    form.querySelector('#pass').value='';
+    form.querySelector('#email').value = '';
+    form.querySelector('#pass').value = '';
 });

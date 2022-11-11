@@ -111,10 +111,7 @@ function cambioCantMenos(item) {
 
 document.addEventListener('DOMContentLoaded', (e) => {
 
-    if (JSON.parse(localStorage.getItem('articles')).length) {
-        currentCartList = JSON.parse(localStorage.getItem('articles'))
-        showCartList();
-    } else {
+    if (JSON.parse(localStorage.getItem('articles')) == null || JSON.parse(localStorage.getItem('articles')).length == 0) {
         document.querySelector("main > div.container").innerHTML = `
         <div class="text-center mt-5">
             <img src="img/emptycart.svg" alt="emptycart" class="w-25">
@@ -123,6 +120,9 @@ document.addEventListener('DOMContentLoaded', (e) => {
                 <a href="categories.html" class="link-dark">Encuentra artículos para tu carrito</a>
             </div>
         </div>`;
+    } else {
+        currentCartList = JSON.parse(localStorage.getItem('articles'))
+        showCartList();
     }
 
     getJSONData(CART_BUY_URL).then(function (resultObj) {

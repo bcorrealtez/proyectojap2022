@@ -1,12 +1,12 @@
-const user = localStorage.getItem('userMailVal');
+const user = localStorage.getItem("user");
 
 function clSesion() {
   localStorage.clear();
   window.location.replace("index.html");
 }
 
-const nav = document.querySelector('nav');
-nav.innerHTML=`
+const nav = document.querySelector("nav");
+nav.innerHTML = `
 <div class="container">
 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
   aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

@@ -18,8 +18,3 @@
       })
   })()
 
-
-  obj = {
-    nombre: "juan",
-    apellido: "alberto"
-  }

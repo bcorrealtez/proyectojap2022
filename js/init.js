@@ -1,5 +1,5 @@
-const catID=localStorage.getItem('catID');
-const prodID=localStorage.getItem('prodID');
+const catID = localStorage.getItem("catID");
+const prodID = localStorage.getItem("prodID");
 const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
 const PUBLISH_PRODUCT_URL = `https://japceibal.github.io/emercado-api/sell/publish.json`;
 const PRODUCTS_URL = `https://japceibal.github.io/emercado-api/cats_products/${catID}.json`;
@@ -9,39 +9,41 @@ const CART_INFO_URL = `https://japceibal.github.io/emercado-api/user_cart/25801.
 const CART_BUY_URL = `https://japceibal.github.io/emercado-api/cart/buy.json`;
 const EXT_TYPE = ".json";
 
-let showSpinner = function(){
+let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
-}
+};
 
-let hideSpinner = function(){
+let hideSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "none";
-}
+};
 
-let getJSONData = function(url){
-    let result = {};
-    showSpinner();
-    return fetch(url)
-    .then(response => {
+let getJSONData = function (url) {
+  let result = {};
+  showSpinner();
+  return fetch(url)
+    .then((response) => {
       if (response.ok) {
         return response.json();
-      }else{
+      } else {
         throw Error(response.statusText);
       }
     })
-    .then(function(response) {
-          result.status = 'ok';
-          result.data = response;
-          hideSpinner();
-          return result;
+    .then(function (response) {
+      result.status = "ok";
+      result.data = response;
+      hideSpinner();
+      return result;
     })
-    .catch(function(error) {
-        result.status = 'error';
-        result.data = error;
-        hideSpinner();
-        return result;
+    .catch(function (error) {
+      result.status = "error";
+      result.data = error;
+      hideSpinner();
+      return result;
     });
-}
+};
 
-document.addEventListener('DOMContentLoaded', ()=>{
-  if (!localStorage.getItem('userMailVal')) {window.location.replace("index.html");}
+document.addEventListener("DOMContentLoaded", () => {
+  if (!localStorage.getItem("user")) {
+    window.location.replace("index.html");
+  }
 });

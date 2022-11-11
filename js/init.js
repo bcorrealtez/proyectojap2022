@@ -43,7 +43,8 @@ let getJSONData = function (url) {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (!localStorage.getItem("user")) {
+  if (!localStorage.getItem("user") || !JSON.parse(localStorage.getItem("user")).mail.length) {
+    localStorage.clear()
     window.location.replace("index.html");
   }
 });

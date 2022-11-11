@@ -1,4 +1,4 @@
-const user = localStorage.getItem("user");
+const user = JSON.parse(localStorage.getItem("user"));
 
 function clSesion() {
   localStorage.clear();
@@ -25,7 +25,7 @@ nav.innerHTML = `
     </li>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"  data-bs-toggle="dropdown" aria-expanded="false">
-          ${user}
+          ${user.mail}
         </a>
         <ul class="dropdown-menu start-50 mt-1 navbar-dark bg-dark text-center px-3"  aria-labelledby="navbarDropdown">
           <li class="nav-item">

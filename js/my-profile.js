@@ -4,27 +4,32 @@ const pApe = document.querySelector("#pApe");
 const sApe = document.querySelector("#sApe");
 const contacto = document.querySelector("#contacto");
 const mail = document.querySelector("#mail");
-const user = JSON.parse(localStorage.getItem("user"));
-
+const guardar = document.querySelector("form button");
+const usuario = JSON.parse(localStorage.getItem("user"));
 
 (function () {
   'use strict'
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
   var forms = document.querySelectorAll('.needs-validation')
-
+  forms[0].addEventListener("input", ()=>{
+    guardar.removeAttribute("disabled");
+  });
   // Loop over them and prevent submission
   Array.prototype.slice.call(forms)
     .forEach(function (form) {
       form.addEventListener('submit', function (event) {
-
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        } else {
-          localStorage.setItem("user", JSON.stringify(user));
+        event.preventDefault()
+        event.stopPropagation()
+        if (form.checkValidity()) {
+          usuario.pNombre = pNom.value;
+          usuario.sNombre = sNom.value;
+          usuario.pApellido = pApe.value;
+          usuario.sApellido = sApe.value;
+          usuario.nContacto = contacto.value;
+          usuario.mail = mail.value;
+          localStorage.setItem("user", JSON.stringify(usuario));
         }
-
 
         form.classList.add('was-validated')
       }, false)
@@ -32,11 +37,11 @@ const user = JSON.parse(localStorage.getItem("user"));
 })()
 
 document.addEventListener("DOMContentLoaded", () => {
-  pNom.value = user.pNombre;
-  sNom.value = user.sNombre;
-  pApe.value = user.pApellido;
-  sApe.value = user.sApellido;
-  contacto.value = user.nContacto;
-  mail.value = user.mail;
+  pNom.value = usuario.pNombre;
+  sNom.value = usuario.sNombre;
+  pApe.value = usuario.pApellido;
+  sApe.value = usuario.sApellido;
+  contacto.value = usuario.nContacto;
+  mail.value = usuario.mail;
 
 });

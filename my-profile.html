@@ -39,30 +39,39 @@
             <div class="col-6 px-3 pb-2">
               <label for="pNom" class="form-label">Primer nombre</label>
               <input type="text" class="form-control" id="pNom" value="" required>
+              <div class="invalid-feedback">
+                Debe ingresar un nombre.
+              </div>
             </div>
             <div class="col-6 px-3 pb-2">
               <label for="sNom" class="form-label">Segundo nombre</label>
-              <input type="text" class="form-control" id="sNom" value="" required>
+              <input type="text" class="form-control" id="sNom" value="">
             </div>
             <div class="col-6 px-3 p-2">
               <label for="pApe" class="form-label">Primer apellido</label>
               <input type="text" class="form-control" id="pApe" value="" required>
+              <div class="invalid-feedback">
+                Debe ingresar un apellido.
+              </div>
             </div>
             <div class="col-6 px-3 p-2">
               <label for="sApe" class="form-label">Segundo apellido</label>
-              <input type="text" class="form-control" id="sApe" value="" required>
+              <input type="text" class="form-control" id="sApe" value="">
             </div>
             <div class="col-6 px-3 p-2 mb-3">
               <label for="mail" class="form-label">e-Mail</label>
               <input type="email" class="form-control" id="mail" value="" required>
+              <div class="invalid-feedback">
+                Debe ingresar un mail válido.
+              </div>
             </div>
             <div class="col-6 px-3 p-2 mb-3">
               <label for="contacto" class="form-label">Teléfono de contacto</label>
-              <input type="tel" class="form-control" id="contacto" value="" required>
+              <input type="tel" class="form-control" pattern="^[0][9][1-9]{7}" id="contacto" value="">
             </div>
             <hr>
-            <div class="col d-flex justify-content-end py-2">
-              <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            <div class="d-flex justify-content-end py-2">
+              <button type="submit" class="btn btn-primary" disabled>Guardar cambios</button>
             </div>
           </div>
         </div>

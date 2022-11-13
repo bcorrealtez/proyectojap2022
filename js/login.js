@@ -7,7 +7,7 @@ const user = {
   nContacto: ""
 }
 
-if (JSON.parse(localStorage.getItem("user")).mail.length) {
+if (JSON.parse(localStorage.getItem("user")) && JSON.parse(localStorage.getItem("user")).mail) {
   window.location.replace("home.html");
 }
 

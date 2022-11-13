@@ -161,16 +161,16 @@ function showAlertSuccess() {
 //------------ Validación ------------
 (function () {
     'use strict'
-
+    let modalBtn = document.getElementById("modalBtn")
     var forms = document.querySelectorAll('.needs-validation')
     var form = Array.prototype.slice.call(forms)
     form[0].addEventListener('submit', function (event) {
         event.preventDefault()
         event.stopPropagation()
         if (form[0].checkValidity()) {
-            document.getElementById("modalBtn").setAttribute("data-bs-toggle", "modal")
-            document.getElementById("modalBtn").click()
-            document.getElementById("modalBtn").removeAttribute("data-bs-toggle", "modal")
+            modalBtn.setAttribute("data-bs-toggle", "modal")
+            modalBtn.click()
+            modalBtn.removeAttribute("data-bs-toggle", "modal")
         }
         form[0].classList.add('was-validated')
     }, false)
@@ -180,6 +180,8 @@ function showAlertSuccess() {
         event.stopPropagation()
         if (form[1].checkValidity()) {
             showAlertSuccess();
+            document.querySelector("#modalCompra .btn-close").click();
+            modalBtn.setAttribute("disabled", "")
             sClose.addEventListener('click', () => {
                 currentCartList.splice(0, currentCartList.length);
                 localStorage.setItem('articles', JSON.stringify(currentCartList));

@@ -1,17 +1,15 @@
-const lisCarrito = document.getElementById('listaCompra')
+const lisCarrito = document.getElementById('listaCompra');
 const checkboxes = document.querySelectorAll('.form-check-input');
 var priceCount = 0;
 var shipPrice = 0.15;
-
 //------------ Muestra los precios de la compra ------------
 function innerPrice() {
     document.getElementById("resumenSubtotal").innerHTML = `USD ${Math.round(priceCount * 100) / 100}`;
     document.getElementById("resumenEnvio").innerHTML = `USD ${Math.round(priceCount * shipPrice * 100) / 100}`;
     document.getElementById("resumenTotal").innerHTML = `USD ${Math.round((priceCount * shipPrice + priceCount))}`;
 }
-
 function showCartList() {
-    priceCount = 0
+    priceCount = 0;
     let htmlConToAppend = '';
     if (currentCartList) {
         for (let i = 0; i < currentCartList.length; i++) {
@@ -44,15 +42,13 @@ function showCartList() {
                     </div>
                 </div>
             </div>
-            `
+            `;
             priceCount += currentCartList[i].count * (currentCartList[i].currency == "USD" ? currentCartList[i].unitCost : currentCartList[i].unitCost * 0.0245);
-
         }
         innerPrice();
         lisCarrito.innerHTML = htmlConToAppend;
     }
 }
-
 function deleteItem(item) {
     currentCartList.splice(item, 1);
     localStorage.setItem('articles', JSON.stringify(currentCartList));
@@ -69,36 +65,32 @@ function deleteItem(item) {
         </div>`;
     }
 }
-
 checkboxes[0].addEventListener('click', () => {
-    shipPrice = 0.15
+    shipPrice = 0.15;
     innerPrice();
-})
+});
 checkboxes[1].addEventListener('click', () => {
-    shipPrice = 0.07
+    shipPrice = 0.07;
     innerPrice();
-})
+});
 checkboxes[2].addEventListener('click', () => {
-    shipPrice = 0.05
+    shipPrice = 0.05;
     innerPrice();
-})
-
+});
 //------------ Cambia la cantidad de artículos y precios correspondientes ------------
 function cambioCant(nCount, item) {
-    currentCartList[item].count = nCount
+    currentCartList[item].count = nCount;
     document.getElementById("cant" + item).value = nCount;
     let prodPriceC = currentCartList[item].unitCost * nCount;
     document.getElementById("price" + item).innerHTML = `${currentCartList[item].currency} ${prodPriceC}`;
     innerPrice();
 }
-
 //------------ Aumenta la cantidad de artículos y precios correspondientes ------------
 function cambioCantMas(item) {
     let nCount = currentCartList[item].count + 1;
     priceCount += (currentCartList[item].currency == "USD" ? currentCartList[item].unitCost : currentCartList[item].unitCost * 0.0245);
-    cambioCant(nCount, item)
+    cambioCant(nCount, item);
 }
-
 //------------ Disminuye la cantidad de artículos y precios correspondientes ------------
 function cambioCantMenos(item) {
     let nCount = currentCartList[item].count;
@@ -106,11 +98,9 @@ function cambioCantMenos(item) {
         priceCount -= (currentCartList[item].currency == "USD" ? currentCartList[item].unitCost : currentCartList[item].unitCost * 0.0245);
     }
     nCount = Math.max(currentCartList[item].count - 1, 1);
-    cambioCant(nCount, item)
+    cambioCant(nCount, item);
 }
-
 document.addEventListener('DOMContentLoaded', (e) => {
-
     if (JSON.parse(localStorage.getItem('articles')) == null || JSON.parse(localStorage.getItem('articles')).length == 0) {
         document.querySelector("main > div.container").innerHTML = `
         <div class="text-center mt-5">
@@ -121,21 +111,18 @@ document.addEventListener('DOMContentLoaded', (e) => {
             </div>
         </div>`;
     } else {
-        currentCartList = JSON.parse(localStorage.getItem('articles'))
+        currentCartList = JSON.parse(localStorage.getItem('articles'));
         showCartList();
     }
-
     getJSONData(CART_BUY_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
-            currentMsg = resultObj.data.msg
+            currentMsg = resultObj.data.msg;
             document.querySelector("#alert-success p").innerHTML = currentMsg;
         }
     });
 });
-
 let tarRadio = document.getElementById("tarjeta");
 let tarTrans = document.getElementById("transferencia");
-
 //------------ Muestra los campos del método de pago por tarjeta ------------
 tarRadio.addEventListener("click", () => {
     document.getElementById('collapseTransfer').classList.remove("show");
@@ -143,52 +130,47 @@ tarRadio.addEventListener("click", () => {
     tarRadio.querySelectorAll('input').forEach(elem => elem.removeAttribute('disabled', ''));
     tarTrans.querySelector('input').setAttribute('disabled', '');
 });
-
 //------------ Muestra los campos del método de pago por transferencia ------------
 tarTrans.addEventListener("click", () => {
-    document.getElementById('collapseTransfer').classList.add("show")
-    document.getElementById('collapseTarjeta').classList.remove("show")
+    document.getElementById('collapseTransfer').classList.add("show");
+    document.getElementById('collapseTarjeta').classList.remove("show");
     tarRadio.querySelectorAll('input').forEach(elem => elem.setAttribute('disabled', ''));
     tarTrans.querySelector('input').removeAttribute('disabled', '');
 });
-
 const sAlerta = document.getElementById("alert-success");
 const sClose = sAlerta.querySelector('.btn-close');
 function showAlertSuccess() {
     sAlerta.classList.add("show");
 }
-
 //------------ Validación ------------
 (function () {
     'use strict'
-    let modalBtn = document.getElementById("modalBtn")
-    var forms = document.querySelectorAll('.needs-validation')
-    var form = Array.prototype.slice.call(forms)
+    let modalBtn = document.getElementById("modalBtn");
+    var forms = document.querySelectorAll('.needs-validation');
+    var form = Array.prototype.slice.call(forms);
     form[0].addEventListener('submit', function (event) {
-        event.preventDefault()
-        event.stopPropagation()
+        event.preventDefault();
+        event.stopPropagation();
         if (form[0].checkValidity()) {
-            modalBtn.setAttribute("data-bs-toggle", "modal")
-            modalBtn.click()
-            modalBtn.removeAttribute("data-bs-toggle", "modal")
+            modalBtn.setAttribute("data-bs-toggle", "modal");
+            modalBtn.click();
+            modalBtn.removeAttribute("data-bs-toggle", "modal");
         }
-        form[0].classList.add('was-validated')
-    }, false)
-    
+        form[0].classList.add('was-validated');
+    }, false);
     form[1].addEventListener('submit', function (event) {
-        event.preventDefault()
-        event.stopPropagation()
+        event.preventDefault();
+        event.stopPropagation();
         if (form[1].checkValidity()) {
             showAlertSuccess();
             document.querySelector("#modalCompra .btn-close").click();
-            modalBtn.setAttribute("disabled", "")
+            modalBtn.setAttribute("disabled", "");
             sClose.addEventListener('click', () => {
                 currentCartList.splice(0, currentCartList.length);
                 localStorage.setItem('articles', JSON.stringify(currentCartList));
                 form[1].submit();
-
             });
         }
-        form[1].classList.add('was-validated')
-    }, false)
-})()
+        form[1].classList.add('was-validated');
+    }, false);
+})();

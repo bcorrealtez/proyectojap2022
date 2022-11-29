@@ -40,11 +40,11 @@ function setCatID(id) {
     window.location = "products.html"
 }
 
-function showCategoriesList(){
+function showCategoriesList(currentCategories){
 
     let htmlContentToAppend = "";
-    for(let i = 0; i < currentCategoriesArray.length; i++){
-        let category = currentCategoriesArray[i];
+    for(let i = 0; i < currentCategories.length; i++){
+        let category = currentCategories[i];
 
         if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
@@ -81,8 +81,17 @@ console.log(sortCriteria)
     currentCategoriesArray = sortCategories(currentSortCriteria, currentCategoriesArray);
 
     //Muestro las categorías ordenadas
-    showCategoriesList();
+    showCategoriesList(currentCategoriesArray);
 }
+
+
+const busCat = document.querySelector("#busCategories");
+
+busCat.addEventListener('input', ()=>{
+    let catArray = currentCategoriesArray.filter(elem => elem.name.toLowerCase().includes(busCat.value.toLowerCase()))
+    showCategoriesList(catArray)
+});
+
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -91,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(CATEGORIES_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentCategoriesArray = resultObj.data
-            showCategoriesList()
+            showCategoriesList(currentCategoriesArray)
             //sortAndShowCategories(ORDER_ASC_BY_NAME, resultObj.data);
         }
     });
@@ -115,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         minCount = undefined;
         maxCount = undefined;
 
-        showCategoriesList();
+        showCategoriesList(currentCategoriesArray);
     });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
@@ -138,6 +147,6 @@ document.addEventListener("DOMContentLoaded", function(e){
             maxCount = undefined;
         }
 
-        showCategoriesList();
+        showCategoriesList(currentCategoriesArray);
     });
 });
